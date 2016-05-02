@@ -1,0 +1,148 @@
+<!DOCTYPE html >
+<html lang="en"
+      ng-app="carbonOffsets" >
+<head >
+	<title>Carbon Offsets</title >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link href="main.css" rel="stylesheet" >
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-css/1.0.7/angular-css.js" rel="stylesheet" >
+	<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+	
+</head >
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" >
+	<div class="container" >
+		<div class="navbar-header" >
+			<a class="navbar-brand">Offsetting Carbon Emissions with Forests
+			</a >
+		</div >
+	</div >
+</nav >
+<br>
+		<div class="col-md-4" style="float:left"
+		     ng-controller="LocationListController" >
+
+					<table class="table table-bordered" >
+
+						<tr >
+							<th>Click on Location to load place specific FRQ
+							</th >
+						</tr >
+
+						<tr ng-repeat="location in filteredLocations = (info.locations | orderBy:order)"
+						    ng-style="{'background-color': location.place == info.selectedLocation.place ? '#a8a8a8' : 'white'}"
+						    ng-click="info.selectedLocation = location" >
+							<td >{{ location.place }}</td >
+						</tr >
+
+					</table >
+
+				</div >
+
+		</div >
+		<div class="col-md-8" style="float:right">
+
+			<div ng-controller="LocationDetailController" class="panel panel-default">
+				<div class="panel-heading" >FRQ for ... {{ info.selectedLocation.place }}</div >
+				<div class="panel-body" >
+     		
+						<p >The <strong>{{ info.selectedLocation.place }}</strong> School District uses oil to heat school buildings. Go Green! is a new project the district will implement. The superintendent has declared that the district will dedicate itself to reducing its carbon footprint. In addition to taking serious energy-conservation measures, the district is planning to help offset its carbon dioxide emissions by raising money to help conserve a portion of a large tract of forest land adjacent to the high school campus.</p>
+						
+						<br>
+						
+						<p>Use the assumptions below to answer the questions that follow. For each calculation, show all work.</p>
+						<br>
+						
+						<ul>
+  							<li> The biomass of the forest increases at an annual rate of <strong>{{ info.selectedLocation.annualrateforestincrease | number : fractionSize }}</strong> kg/ha.</li>
+  							<li> The forest biomass is <strong>{{ info.selectedLocation.percentforestbiomass | number : fractionSize }}</strong> percent carbon by mass.</li>
+  							<li> Each year the district uses <strong>{{ info.selectedLocation.fueloilneeds | number : fractionSize }}</strong> gallons of fuel oil for heating and hot water.</li>
+  							<li> <strong>10</strong> kg of CO2 is produced when <strong>1</strong> gallon of fuel oil is combusted.</li>
+  							<li> <strong>1.0</strong> kg of CO2 contains <strong>0.27</strong> kg of carbon.</li>
+  							<li> The cost of putting 1 ha of the forest into conservancy is <strong>{{ info.selectedLocation.forestconservancycost | number : fractionSize }}</strong>.</li>
+						</ul>
+						<br>
+					
+						<p>Calculate the mass of carbon, in kg, that is accumulated and stored in 1.0 ha of forest in one year</p >
+						
+						
+						<div ng-controller="MyCtrl"><!--http://www.w3schools.com/angular/tryit.asp?filename=try_ng_events_toggle-->
+							<button class="btn" ng-click="myFunc()">Click to Show and Hide!</button>
+						
+							<br></br>
+					
+							<div>
+    							<span ng-animate="'animate'" ng-show="showMe" mathjax-bind="info.selectedLocation.answertoproblem1"></span>
+							</div> <!--http://jsfiddle.net/spicyj/ypqvp/-->
+						
+    				    </div>
+    				    
+    				    
+    				    
+    				    
+    				<br></br>
+					
+						<p>Calculate the mass of carbon, in kg, that is emitted by the school as a result of its fuel-oil consumption in one year.</p >
+						
+						<div ng-controller="MyCtrl"><!--http://www.w3schools.com/angular/tryit.asp?filename=try_ng_events_toggle-->
+							<button class="btn" ng-click="myFunc()">Click to Show and Hide!</button>
+						
+							<br></br>
+					
+							<div>
+    							<span ng-show="showMe" ng-animate="'animate'" mathjax-bind="info.selectedLocation.answertoproblem2"></span>
+							</div> <!--http://jsfiddle.net/spicyj/ypqvp/-->
+						
+    				    </div>
+    				    
+    				    <br></br>
+					
+						<p>Calculate the number of hectares of forest the school district needs to conserve in order to offset the carbon released in one year by the school burning its fuel oil.</p >
+						
+						<div ng-controller="MyCtrl"><!--http://www.w3schools.com/angular/tryit.asp?filename=try_ng_events_toggle-->
+							<button class="btn" ng-click="myFunc()">Click to Show and Hide!</button>
+						
+							<br></br>
+					
+							<div>
+    							<span ng-show="showMe" ng-animate="'animate'" mathjax-bind="info.selectedLocation.answertoproblem3"></span>
+    							
+							</div> <!--http://jsfiddle.net/spicyj/ypqvp/-->
+						
+    				    </div>
+    				    
+    				    <br></br>
+					
+						<p>Calculate the amount of money the school district must raise for the conservation project.</p >
+						
+						<div ng-controller="MyCtrl"><!--http://www.w3schools.com/angular/tryit.asp?filename=try_ng_events_toggle-->
+							<button class="btn" ng-click="myFunc()">Click to Show and Hide!</button>
+						
+							<br></br>
+					
+							<div>
+    							<span ng-show="showMe" ng-animate="'animate'" mathjax-bind="info.selectedLocation.answertoproblem4"></span>
+    							
+							</div> <!--http://jsfiddle.net/spicyj/ypqvp/-->
+						
+    				    </div>
+    				    
+			</div >
+		</div >
+</div >
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js" ></script>
+<script src="main.js" ></script>
+
+</body>
+<!--<div id="footer">
+<p class="end" style="font-size:small; color:dark gray; text-align:center;">
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">APES Practice for Energy Math</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.connectedtoscience.org" property="cc:attributionName" rel="cc:attributionURL">Jenny Hoffman</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+<br/>
+This software incorporates Angular JS, Bootstrap CSS and the MathJax TEX and CSS libraries.
+Google API.</p>
+</div>-->
+</html >
+
